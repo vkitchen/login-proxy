@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <title>cthulhu</title>
+</head>
+<body>
+    <div class="login-page">
+        <div class="form">
+            % if (my $message = flash 'message') {
+              <p><%= $message %></p>
+            % }
+            <form class="login-form" action="/login" method="post">
+              <input type="text" placeholder="username" name="username">
+              <input type="password" placeholder="password" name="password">
+              <input class="button" type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

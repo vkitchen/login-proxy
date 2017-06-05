@@ -1,0 +1,11 @@
+[Unit]
+Description=Login Proxy Daemon
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/var/www/login-proxy
+ExecStart=/var/www/login-proxy/login.pl daemon -m production -l http://*:8080
+
+[Install]
+WantedBy=multi-user.target

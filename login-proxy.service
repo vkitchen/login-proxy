@@ -6,6 +6,8 @@ After=network.target
 Type=simple
 WorkingDirectory=/var/www/login-proxy
 ExecStart=/var/www/login-proxy/login.pl daemon -m production -l http://*:8080
+User=webd
+Group=webd
 
 [Install]
 WantedBy=multi-user.target

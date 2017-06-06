@@ -57,7 +57,7 @@ plugin 'authentication', {
 
 plugin 'proxy';
 
-get '/' => sub {
+get '/proxy-root' => sub {
     my $c = shift;
     if (! $c->is_user_authenticated) {
         $c->redirect_to('/login');
@@ -65,37 +65,37 @@ get '/' => sub {
     $c->render(template => 'index', user => $c->current_user);
 };
 
-get '/login' => sub {
+get '/proxy-login' => sub {
     my $c = shift;
     if ($c->is_user_authenticated) {
-        $c->redirect_to('/');
+        $c->redirect_to('/proxy-root');
     }
     $c->render(template => 'login');
 };
 
-post '/login' => sub {
+post '/proxy-login' => sub {
     my $c = shift;
     my $username = $c->param('username');
     my $password = $c->param('password');
     if ($c->authenticate($username, $password)) {
-        $c->redirect_to('/');
+        $c->redirect_to('/proxy-root');
     } else {
         $c->flash(message => 'Password or Username incorrect');
-        $c->redirect_to('/login');
+        $c->redirect_to('/proxy-login');
     }
 };
 
-get '/logout' => sub {
+get '/proxy-logout' => sub {
     my $c = shift;
 
     $c->logout();
-    $c->redirect_to('/');
+    $c->redirect_to('/proxy-root');
 };
 
-get '/app/' => sub {
+get '/' => sub {
     my $c = shift;
     if (! $c->is_user_authenticated) {
-        $c->redirect_to('/login');
+        $c->redirect_to('/proxy-login');
     }
     $c->proxy_to('http://localhost:8081/')
 };
@@ -103,7 +103,7 @@ get '/app/' => sub {
 get '/*params' => sub {
     my $c = shift;
     if (! $c->is_user_authenticated) {
-        $c->redirect_to('/login');
+        $c->redirect_to('/proxy-login');
     }
     my $params = $c->stash('params');
     $c->proxy_to("http://localhost:8081/$params")

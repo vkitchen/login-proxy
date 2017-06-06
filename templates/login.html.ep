@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="/style.css">
+    <link rel="stylesheet" type="text/css" href="/proxy-style.css">
     <title>cthulhu</title>
 </head>
 <body>
@@ -10,7 +10,7 @@
             % if (my $message = flash 'message') {
               <p><%= $message %></p>
             % }
-            <form class="login-form" action="/login" method="post">
+            <form class="login-form" action="/proxy-login" method="post">
               <input type="text" placeholder="username" name="username">
               <input type="password" placeholder="password" name="password">
               <input class="button" type="submit" value="Submit">

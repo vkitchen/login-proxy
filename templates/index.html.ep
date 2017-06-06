@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="/style.css">
+    <link rel="stylesheet" type="text/css" href="/proxy-style.css">
     <title>cthulhu</title>
 </head>
 <body>
     <p>Welcome <%= %$user{'username'} %></p>
-    <a href="/logout">logout</a>
+    <a href="/proxy-logout">logout</a>
     <ul>
-        <li><a href="/app/">app</a></li>
+        <li><a href="/">app</a></li>
     </ul>
 </body>
 </html>

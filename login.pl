@@ -105,8 +105,8 @@ get '/*params' => sub {
     if (! $c->is_user_authenticated) {
         $c->redirect_to('/proxy-login');
     }
-    my $params = $c->stash('params');
-    $c->proxy_to("http://localhost:8081/$params")
+    my $params = $c->url_for('current');
+    $c->proxy_to("http://localhost:8081$params")
 };
 
 app->start;
